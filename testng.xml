@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuiteApi" verbose="10"  >
+    <test name="TestAPI" verbose="10">    
+
+        <packages>
+            <package name="it.hillel.jira.test"/>
+        </packages>
+    </test>
+</suite>
