@@ -8,6 +8,7 @@ import org.testng.annotations.*;
 import pojo.issue.addComment.AddComment;
 import pojo.issue.createIssue.Fields;
 import pojo.issue.createIssue.CreateIssue;
+import pojo.login.Login;
 import pojo.search.Search;
 import pojo.issue.updatePriority.*;
 import utils.api.APIPathes;
@@ -31,13 +32,14 @@ public class TestJiraApi {
     //Checking successfully authentication and received sessionId.
     @BeforeTest
     public void loginSessionIdTest() {
-        JSONObject login = new JSONObject();
-        login.put("username",username);
-        login.put("password",password);
+
+        Login loginPojo = new Login();
+        loginPojo.setUsername(username);
+        loginPojo.setPassword(password);
 
         sessionId = given().
             header("Content-Type", "application/json").
-            body(login.toString()).
+            body(loginPojo).
             when().
             post(APIPathes.login).
             then().
@@ -67,13 +69,14 @@ public class TestJiraApi {
     //Check status code 401 on wrong username
     @Test
     public void loginWrongUsernameTest() {
-        JSONObject login = new JSONObject();
-        login.put("username","WrongUsername");
-        login.put("password",password);
+
+        Login loginPojo = new Login();
+        loginPojo.setUsername("WrongUsername");
+        loginPojo.setPassword(password);
 
         ValidatableResponse responseLoginWrongUsername = given().
                 header("Content-Type", "application/json").
-                body(login.toString()).
+                body(loginPojo).
                 when().
                 post(APIPathes.login).
                 then().
@@ -83,13 +86,13 @@ public class TestJiraApi {
     //Check status code 401 on wrong password.
     @Test
     public void loginWrongPasswordTest() {
-        JSONObject login = new JSONObject();
-        login.put("username",username);
-        login.put("password","WrongPassword");
+        Login loginPojo = new Login();
+        loginPojo.setUsername(username);
+        loginPojo.setPassword("WrongPassword");
 
         ValidatableResponse responseLoginWrongPassword  = given().
                 header("Content-Type", "application/json").
-                body(login.toString()).
+                body(loginPojo).
                 when().
                 post(APIPathes.login).
                 then().
