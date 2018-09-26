@@ -2,10 +2,15 @@ package it.hillel.jira.test;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pojo.issue.addComment.AddComment;
+import pojo.issue.createIssue.Fields;
+import pojo.issue.createIssue.CreateIssue;
+import pojo.search.Search;
+import pojo.issue.updatePriority.*;
+import utils.api.APIPathes;
 
 import static io.restassured.RestAssured.given;
 
@@ -34,7 +39,7 @@ public class TestJiraApi {
             header("Content-Type", "application/json").
             body(login.toString()).
             when().
-            post("/rest/auth/1/session").
+            post(APIPathes.login).
             then().
             statusCode(200).log().all().
             extract().path("session.value");
@@ -43,7 +48,7 @@ public class TestJiraApi {
     //Check correct URL and status code 401
     @Test
     public void validateAuthUrlTest() {
-        given().get("/rest/auth/1/session").then().statusCode(401).log().all(); //Code 401: Returned if the authentication credentials are incorrect or missing.
+        given().get(APIPathes.login).then().statusCode(401).log().all(); //Code 401: Returned if the authentication credentials are incorrect or missing.
     }
 
     //Get Id's, Projects, Type and check correct response
@@ -53,7 +58,7 @@ public class TestJiraApi {
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
                 when().
-                get("/rest/api/2/issue/createmeta").
+                get(APIPathes.createmeta).
                 then().
                 statusCode(200).log().all(); //Status code 200: Returned if the request is successful.
         String responseIdsProjectType = response.extract().asString();
@@ -70,7 +75,7 @@ public class TestJiraApi {
                 header("Content-Type", "application/json").
                 body(login.toString()).
                 when().
-                post("/rest/auth/1/session").
+                post(APIPathes.login).
                 then().
                 statusCode(401).log().all(); //Code 401: Returned if the authentication credentials are incorrect or missing.
     }
@@ -86,7 +91,7 @@ public class TestJiraApi {
                 header("Content-Type", "application/json").
                 body(login.toString()).
                 when().
-                post("/rest/auth/1/session").
+                post(APIPathes.login).
                 then().
                 statusCode(401).log().all(); //Code 401: Returned if the authentication credentials are incorrect or missing.
     }
@@ -99,30 +104,21 @@ public class TestJiraApi {
         String issueTypeId = "10105";
         String assigneeName = "Klepikov_Vjacheslav";
 
-        JSONObject issueCreate = new JSONObject();
-        JSONObject fields = new JSONObject();
-        JSONObject project = new JSONObject();
-        JSONObject issueType = new JSONObject();
-        JSONObject assignee = new JSONObject();
-
-        project.put("key", projectKey);
-        issueType.put("id", issueTypeId);
-        assignee.put("name", assigneeName);
-        fields.put("project", project);
-        fields.put("issuetype", issueType);
-        fields.put("assignee", assignee);
-        fields.put("summary", fieldsSummary);
-        issueCreate.put("fields", fields);
+        Fields fieldsPojo = new Fields();
+        fieldsPojo.setSummary(fieldsSummary);
+        fieldsPojo.setIssueType(issueTypeId);
+        fieldsPojo.setProject(projectKey);
+        fieldsPojo.setAssignee(assigneeName);
+        CreateIssue createIssuePojo = new CreateIssue(fieldsPojo);
 
         ValidatableResponse response = given().
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
-                body(issueCreate.toString()).
+                body(createIssuePojo).
                 when().
-                post("/rest/api/2/issue").
+                post(APIPathes.issue).
                 then().
                 statusCode(201).log().all(); // Code 201: Returns a link to the created issue.
-        //String responseBody = response.extract().asString();
         issueId = response.extract().path("id");
     }
 
@@ -130,13 +126,13 @@ public class TestJiraApi {
      @Test (dependsOnMethods = "createIssueTest")
      public void addCommentIssueTest() {
 
-         JSONObject issueComment = new JSONObject();
-         issueComment.put("body", "This is a comment was add via APT test.");
+         AddComment addCommentPojo = new AddComment();
+         addCommentPojo.setBody("This is a comment was add via APT test.");
 
          ValidatableResponse responseAddComment = given().
                  header("Content-Type", "application/json").
                  header("Cookie", "JSESSIONID=" + sessionId).
-                 body(issueComment.toString()).
+                 body(addCommentPojo).
                  when().
                  post("/rest/api/2/issue/" + issueId + "/comment").
                  then().
@@ -152,7 +148,7 @@ public class TestJiraApi {
                     header("Content-Type", "application/json").
                     header("Cookie", "JSESSIONID=" + sessionId).
                     when().
-                    get("/rest/api/2/issue/" + issueId + "/comment/" + commentId).
+                    get(APIPathes.issue + issueId + "/comment/" + commentId).
                     then().
                     statusCode(200).log().all(); //Code 200: Returns a full representation of a Jira comment in JSON format.
             Assert.assertEquals(responseGetComment.extract().path("body"),"This is a comment was add via APT test.");
@@ -161,28 +157,21 @@ public class TestJiraApi {
     //Update priority
     @Test (dependsOnMethods = "createIssueTest")
     public void updatePriorityIssueTest() {
-        JSONObject updatePriority = new JSONObject();
-        JSONObject update = new JSONObject();
-        JSONObject priorityArray = new JSONObject();
-        JSONArray priority = new JSONArray();
-        JSONObject set = new JSONObject();
 
-        updatePriority.put("update", update);
-        update.put("priority",priority);
-        priority.add(priorityArray);
-        priorityArray.put("set", set);
-        set.put("name","High");
-
+        Set setPojo =new Set("High");
+        Priority priorityPojo = new Priority(setPojo);
+        Update updatePojo = new Update();
+        updatePojo.setPriority(priorityPojo);
+        UpdatePriority updatePriorityPojo = new UpdatePriority(updatePojo);
+        
         ValidatableResponse response = given().
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
-                body(updatePriority.toString()).//"{\"update\":{\"priority\":[{\"set\":{\"name\":\"High\"}}]}}"
+                body(updatePriorityPojo).//"{\"update\":{\"priority\":[{\"set\":{\"name\":\"High\"}}]}}"
                 when().
-                put("/rest/api/2/issue/"+issueId).
+                put(APIPathes.issue+issueId).
                 then().
                 statusCode(204).log().all(); //Code 204:Returned if the request is successfully.
-        String responseBody = response.extract().asString();
-        System.out.println(responseBody);
     }
 
     //Check the priority
@@ -192,10 +181,65 @@ public class TestJiraApi {
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
                 when().
-                get("/rest/api/2/issue/" + issueId ).
+                get(APIPathes.issue + issueId ).
                 then().
                 statusCode(200).log().all(); //Code 200: Returns a full representation of an issue in JSON format.
         Assert.assertEquals(responsegetIssuePriority.extract().path("fields.priority.name"),"High");
+    }
+
+    //Search for issue using JQL
+    @Test (dependsOnMethods = "createIssueTest")
+    public void searchIssueJqlTest() {
+
+        Search searchIssueJqlPojo =new Search("project = QAAUT6 AND summary  ~ \"API test somethings wrong\"");
+
+        ValidatableResponse response = given().
+                header("Content-Type", "application/json").
+                header("Cookie", "JSESSIONID=" + sessionId).
+                body(searchIssueJqlPojo).
+                when().
+                post(APIPathes.search).
+                then().
+                statusCode(200).log().all(); //Code 200: Returned if the request is successful.
+        Assert.assertEquals(response.extract().path("issues[0].id"),issueId);
+    }
+
+    //Get current User, Check name
+    @Test
+    public void getUserTest() {
+        ValidatableResponse response = given().
+                header("Content-Type", "application/json").
+                header("Cookie", "JSESSIONID=" + sessionId).
+                when().
+                get (APIPathes.user +"myself").
+                then() .
+                statusCode(200).log().all(); //Code 200: Returned if the request is successful.
+        Assert.assertEquals(response.extract().path("name"),username);
+    }
+
+    //Get Project, Check status code 200 and check project key
+    @Test
+    public void getProgectTest() {
+        ValidatableResponse response = given().
+                header("Content-Type", "application/json").
+                header("Cookie", "JSESSIONID=" + sessionId).
+                when().
+                get (APIPathes.project+projectKey).
+                then() .
+                statusCode(200).log().all(); //Code 200: Returned if the request is successful.
+        Assert.assertEquals(response.extract().path("key"),projectKey);
+    }
+
+    //Get Groups, Check status code 200
+    @Test
+    public void getGroupsTest() {
+        ValidatableResponse response = given().
+                header("Content-Type", "application/json").
+                header("Cookie", "JSESSIONID=" + sessionId).
+                when().
+                get (APIPathes.groups+"picker").
+                then() .
+                statusCode(200).log().all(); //Code 200: Returned if the request is successful.
     }
 
     //Delete issue
@@ -205,20 +249,21 @@ public class TestJiraApi {
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
                 when().
-                delete("/rest/api/2/issue/" + issueId).
+                delete(APIPathes.issue + issueId).
                 then().
                 statusCode(204).log().all(); //Code 204: Returned if the issue was successfully removed.
     }
 
-    //Check that issue not found.
+    //Check that issue was delete and not found.
     @AfterSuite
     public void getIssueNegativeTest() {
         ValidatableResponse responsegetIssuePriority = given().
                 header("Content-Type", "application/json").
                 header("Cookie", "JSESSIONID=" + sessionId).
                 when().
-                get("/rest/api/2/issue/" + issueId ).
+                get(APIPathes.issue  + issueId ).
                 then().
                 statusCode(404).log().all(); //Code 404: Returned if the requested issue was not found, or the user does not have permission to view it.
     }
+
 }
