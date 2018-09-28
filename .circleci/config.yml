@@ -27,11 +27,7 @@ jobs:
                     chmod +x ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
                     chmod +x ./sonar-scanner-3.2.0.1227-linux/jre/bin/java
                    
-      -   run:
-                      name: analyze with Sonar
-                      command: |
-                      ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io
-
+      
 workflows:
   version: 2
   build_and_test:
