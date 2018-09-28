@@ -1,4 +1,4 @@
-package pojo.issue.createIssue;
+package pojo.issue.createissue;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

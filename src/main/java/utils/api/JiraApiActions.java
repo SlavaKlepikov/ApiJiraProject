@@ -1,9 +1,9 @@
 package utils.api;
 
 import io.restassured.response.ValidatableResponse;
-import pojo.issue.addComment.AddComment;
-import pojo.issue.createIssue.CreateIssue;
-import pojo.issue.updatePriority.UpdatePriority;
+import pojo.issue.addсomment.AddComment;
+import pojo.issue.createissue.CreateIssue;
+import pojo.issue.updatepriority.UpdatePriority;
 import pojo.login.Login;
 import pojo.search.Search;
 

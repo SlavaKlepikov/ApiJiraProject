@@ -1,4 +1,4 @@
-package pojo.issue.updatePriority;
+package pojo.issue.updatepriority;
 
 import pojo.Pojo;
 

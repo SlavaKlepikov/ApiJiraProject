@@ -1,9 +1,6 @@
 package pojo.login;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import pojo.Pojo;
-import pojo.issue.createIssue.Fields;
-import pojo.issue.createIssue.Project;
 
 public class Login implements Pojo {
 

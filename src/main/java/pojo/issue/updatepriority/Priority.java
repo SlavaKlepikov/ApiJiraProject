@@ -1,4 +1,4 @@
-package pojo.issue.updatePriority;
+package pojo.issue.updatepriority;
 
 public class Priority  {
     public Set set;
