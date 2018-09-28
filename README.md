@@ -12,3 +12,5 @@
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=security_rating)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=security_rating)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=sqale_index)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=sqale_index)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=vulnerabilities)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=vulnerabilities)
+
+Sonar -https://sonarcloud.io/dashboard?id=SlavaKlepikov_ApiJiraProject
