@@ -25,8 +25,7 @@ jobs:
                    
 	- run:
                  name: analyze with Sonar   
- 	command: |
-                                    ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io   
+ 	
 
       - store_artifacts:
                 path: target/surefire-reports
