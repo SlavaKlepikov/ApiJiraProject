@@ -30,14 +30,11 @@
     </plugins>
 </build>
 
-
-
 <dependencies>
     <dependency>
         <groupId>io.rest-assured</groupId>
         <artifactId>rest-assured</artifactId>
         <version>3.1.1</version>
-        <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -50,7 +47,7 @@
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
         <version>6.14.3</version>
-        <scope>test</scope>
+        <scope>compile</scope>
     </dependency>
 
     <dependency>
