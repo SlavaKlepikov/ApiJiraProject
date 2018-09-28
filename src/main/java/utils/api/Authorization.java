@@ -10,12 +10,12 @@ import utils.data.JSONFixture;
 public class Authorization {
 
     public static String JSESSIONID;
-    public static String BASE_URI = "http://jira.hillel.it:8080";
+    public static String baseURI = "http://jira.hillel.it:8080";
     public static String username = "webinar5";
     public static String password = "webinar5";
 
     public static void loginToJIRA() {
-        RestAssured.baseURI = BASE_URI;
+        RestAssured.baseURI = baseURI;
 
         Login loginPojo = JSONFixture.generateLogin(username, password);
         ValidatableResponse responselogin = JiraApiActions.login(loginPojo);
