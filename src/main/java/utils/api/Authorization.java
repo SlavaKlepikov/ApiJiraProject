@@ -24,5 +24,7 @@ public class Authorization {
         Assert.assertTrue(responselogin.extract().contentType().contains(ContentType.JSON.toString()));
 
         JSESSIONID = responselogin.extract().path("session.value");
+
+        Assert.assertTrue(JSESSIONID.matches("[A-Z0-9]{32}"));
     }
 }

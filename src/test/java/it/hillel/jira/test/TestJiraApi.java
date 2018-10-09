@@ -203,5 +203,4 @@ public class TestJiraApi {
         Assert.assertEquals(responseNonExistingIssue.extract().statusCode(), 404);
         Assert.assertTrue(responseNonExistingIssue.extract().contentType().contains(ContentType.JSON.toString()));
     }
-
 }
