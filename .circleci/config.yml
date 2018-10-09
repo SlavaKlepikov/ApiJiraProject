@@ -12,18 +12,6 @@ jobs:
       - run: sudo ln -sf /usr/lib/firefox/firefox /usr/bin/firefox
       - run: sudo apt-get install maven
       - run: mvn test
-      - run:
-                name: install dependencies
-                command: |
-                    wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
-                    unzip sonar-scanner-cli-3.2.0.1227-linux.zip
-                    chmod +x ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner
-                    chmod +x ./sonar-scanner-3.2.0.1227-linux/jre/bin/java                   
-
-      - run:
-                 name: analyze with Sonar
-                 command: |
-                                    ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner -Dsonar.host.url=https://sonarcloud.io
       - store_artifacts:
                       path: target/surefire-reports
                       destination: tr1
