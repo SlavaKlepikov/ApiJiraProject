@@ -8,16 +8,14 @@ jobs:
       - run: java -version
       - run: sudo apt-get update
       - run: sudo apt-get install libpango1.0-0
-      - run: sudo apt-get install firefox
-      - run: sudo ln -sf /usr/lib/firefox/firefox /usr/bin/firefox
       - run: sudo apt-get install maven
+
       - run: mvn test
       - store_artifacts:
-                      path: target/surefire-reports
-                      destination: tr1
-                      path: build/reports/tests
-                      destination: tr2
-
+                path: target/surefire-reports
+                destination: tr1
+                path: build/reports/tests
+                destination: tr2
 workflows:
   version: 2
   build_and_test:
