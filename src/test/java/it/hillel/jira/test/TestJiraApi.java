@@ -1,5 +1,6 @@
 package it.hillel.jira.test;
 
+import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.testng.Assert;
@@ -74,6 +75,7 @@ public class TestJiraApi {
     }
 
     //Create the issue and receive issueId.
+    @Description("Create the issue and receive issueId.")
     @Test
     public void createIssueTest() {
 
