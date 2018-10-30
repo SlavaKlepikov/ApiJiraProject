@@ -3,7 +3,7 @@ package utils.data;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pojo.Pojo;
-import pojo.issue.addсomment.AddComment;
+import pojo.issue.addcomment.AddComment;
 import pojo.issue.createissue.CreateIssue;
 import pojo.issue.createissue.Fields;
 import pojo.issue.updatepriority.Priority;

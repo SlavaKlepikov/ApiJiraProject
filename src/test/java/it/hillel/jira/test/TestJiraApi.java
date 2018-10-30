@@ -8,7 +8,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import pojo.issue.addсomment.AddComment;
+import pojo.issue.addcomment.AddComment;
 import pojo.issue.createissue.CreateIssue;
 import pojo.issue.updatepriority.UpdatePriority;
 import pojo.login.Login;

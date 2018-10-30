@@ -1,4 +1,4 @@
-package pojo.issue.addсomment;
+package pojo.issue.addcomment;
 
 import pojo.Pojo;
 
