@@ -1,6 +1,6 @@
 # ApiJiraProject
 
-[![Build Status](http://91.235.128.79:8080/job/ApiJiraProject/badge/icon)](http://91.235.128.79:8080/job/ApiJiraProject)
+[![Build Status](http://91.235.128.79:8080/job/ApiJiraProject/badge/icon)](http://91.235.128.79:8080/job/ApiJiraProject/)
 
 [![CircleCI](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject.svg?style=svg)](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject)
 
