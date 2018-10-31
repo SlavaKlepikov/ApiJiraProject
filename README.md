@@ -1,9 +1,8 @@
 # ApiJiraProject
-[![Build Status](http://91.235.128.79:8080/buildStatus/icon?job=ApiJiraProject)](http://91.235.128.79:8080/job/ApiJiraProject/)
 
-[![Build Status](http://91.235.128.79:8080/job/ApiJiraProject/badge/icon)](http://91.235.128.79:8080/job/ApiJiraProject/)
+Jenkins: [![Build Status](http://91.235.128.79:8080/job/ApiJiraProject/badge/icon)](http://91.235.128.79:8080/job/ApiJiraProject/)
 
-[![CircleCI](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject.svg?style=svg)](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject)
+CircleCI: [![CircleCI](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject.svg?style=svg)](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject)
 
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)
