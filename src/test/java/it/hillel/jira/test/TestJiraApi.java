@@ -39,7 +39,7 @@ public class TestJiraApi {
         given().get(APIPathes.login).then().statusCode(401).log().all(); //Code 401: Returned if the authentication credentials are incorrect or missing.
     }
 
-    //Get Id's, Projects, Type and check correct response
+    @Description("Get Id's, Projects, Type and check correct response")
     @Test
     public void getIdsProjectTest() {
         ValidatableResponse responseIdsProject = JiraApiActions.getIdsProject();
@@ -48,7 +48,7 @@ public class TestJiraApi {
         Assert.assertTrue(responseIdsProject.extract().contentType().contains(ContentType.JSON.toString()));
     }
 
-    //Check status code 401 on wrong username
+    @Description("Check status code 401 on wrong username")
     @Test
     public void loginWrongUsernameTest() {
         String username="WrongUsername";
@@ -61,7 +61,7 @@ public class TestJiraApi {
         Assert.assertTrue(responseloginWrongUsername.extract().contentType().contains(ContentType.JSON.toString()));
     }
 
-    //Check status code 401 on wrong password.
+    @Description("Check status code 401 on wrong password.")
     @Test
     public void loginWrongPasswordTest() {
         String username="webinar5";
@@ -74,7 +74,6 @@ public class TestJiraApi {
         Assert.assertTrue(responseloginWrongPassword.extract().contentType().contains(ContentType.JSON.toString()));
     }
 
-    //Create the issue and receive issueId.
     @Description("Create the issue and receive issueId.")
     @Test
     public void createIssueTest() {
@@ -92,7 +91,7 @@ public class TestJiraApi {
         issueId=responseCreateIssue.extract().path("id");
     }
 
-     //Add the comment and receive the commentId
+     @Description("Check add the comment and receive the commentId")
      @Test (dependsOnMethods = "createIssueTest")
      public void addCommentIssueTest() {
 
@@ -107,7 +106,7 @@ public class TestJiraApi {
          commentId=responseAddComment.extract().path("id");
      }
 
-     //Check the comment
+     @Description("Check the comment")
      @Test (dependsOnMethods = "addCommentIssueTest")
      public void getCommentIssueTest() {
 
@@ -118,7 +117,7 @@ public class TestJiraApi {
          Assert.assertEquals(responseGetComment.extract().path("body"), "This is a comment was add via APT test.");
      }
 
-    //Update priority
+    @Description("Check update priority")
     @Test (dependsOnMethods = "createIssueTest")
      public void updatePriorityIssueTest() {
 
@@ -131,7 +130,7 @@ public class TestJiraApi {
         responseUpdatePriorityIssue.contentType(ContentType.JSON);
     }
 
-    //Check the priority
+    @Description("Check the priority")
     @Test (dependsOnMethods = {"updatePriorityIssueTest","createIssueTest"})
     public void getIssuePriorityTest() {
 
@@ -142,7 +141,7 @@ public class TestJiraApi {
         Assert.assertEquals(responseIssuePriority.extract().path("fields.priority.name"),"High");
     }
 
-    //Search for issue using JQL
+    @Description("Check search for issue using JQL")
     @Test (dependsOnMethods = "createIssueTest")
     public void searchIssueJqlTest() {
         String jql = "project = QAAUT6 AND summary  ~ \"API test somethings wrong\"";
@@ -156,7 +155,8 @@ public class TestJiraApi {
         Assert.assertEquals(responseSearchIssueJql.extract().path("issues[0].id"),issueId);
     }
 
-    //Get current User, Check name
+
+    @Description("Check the current User, Check name")
     @Test
     public void getUserTest() {
         String user = "myself";
@@ -168,7 +168,7 @@ public class TestJiraApi {
         Assert.assertEquals(responseUserTest.extract().path("name"),username);
     }
 
-    //Get Project, Check status code 200 and check project key
+    @Description("Check  Project, Check status code 200 and check project key")
     @Test
     public void getProgectTest() {
         ValidatableResponse responseProgect = JiraApiActions.getProject(projectKey);
@@ -178,7 +178,7 @@ public class TestJiraApi {
         Assert.assertEquals(responseProgect.extract().path("key"),projectKey);
     }
 
-    //Get Groups, Check status code 200
+    @Description("Get Groups, Check status code 200")
     @Test
     public void getGroupsTest() {
 
@@ -188,7 +188,7 @@ public class TestJiraApi {
         responseGroups.contentType(ContentType.JSON);
     }
 
-    //Delete issue
+    @Description("Delete issue")
     @AfterTest
     public void deleteIssueTest() {
 
@@ -198,7 +198,7 @@ public class TestJiraApi {
         responseDeleteIssue.contentType(ContentType.JSON);
     }
 
-    //Check that issue was delete and not found.
+    @Description("Check that issue was delete and not found.")
     @AfterSuite
     public void getNonExistingIssue() {
         ValidatableResponse responseNonExistingIssue = JiraApiActions.deleteIssue(issueId);
