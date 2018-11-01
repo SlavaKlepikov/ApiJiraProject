@@ -10,7 +10,7 @@
 
     <properties>
         <aspectj.version>1.8.10</aspectj.version>
-        <allure-testng.version>2.6.0</allure-testng.version>
+        <allure-testng.version>2.7.0</allure-testng.version>
     </properties>
 
 <dependencies>
