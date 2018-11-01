@@ -12,8 +12,7 @@ jobs:
 
       - run: mvn test
       - store_artifacts:
-                path: target/surefire-reports
-                destination: tr1
+
                 path: build/reports/tests
                 destination: tr2
 workflows:
