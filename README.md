@@ -4,6 +4,9 @@ Please note that the project still being developed!
 
 This project created on based Test Automation Framework: Java + Maven + TestNG + Rest-assured + Allure + Jenkins.
 
+Jenkins located on HyperHost VPS so we can check current status.
+Also we can view  Allure reports. Please follow the links below
+
 Jenkins: [![Build Status](http://91.235.128.79:8080/buildStatus/icon?job=ApiJiraProject&build=27)](http://91.235.128.79:8080/job/ApiJiraProject/27/)
 
 Sonar: Link-https://sonarcloud.io/dashboard?id=SlavaKlepikov_ApiJiraProject
