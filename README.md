@@ -1,8 +1,9 @@
 # ApiJiraProject
 
+Please note that the project still being developed!
+
 Jenkins: [![Build Status](http://91.235.128.79:8080/buildStatus/icon?job=ApiJiraProject&build=27)](http://91.235.128.79:8080/job/ApiJiraProject/27/)
 
-CircleCI: [![CircleCI](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject.svg?style=svg)](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject)
 
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)
@@ -16,3 +17,13 @@ CircleCI: [![CircleCI](https://circleci.com/gh/SlavaKlepikov/ApiJiraProject.svg?
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=vulnerabilities)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=vulnerabilities)
 
 Sonar -https://sonarcloud.io/dashboard?id=SlavaKlepikov_ApiJiraProject
+
+INSTALLATION:
+
+CONFIGURATION:
+
+TROUBLSHOOTING & FAQ:
+
+RUN:
+
+Run test mvn clean test
