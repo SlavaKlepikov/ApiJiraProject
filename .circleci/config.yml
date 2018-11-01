@@ -12,9 +12,9 @@ jobs:
 
       - run: mvn test
       - store_artifacts:
+                path: test-reports/
+                destination: tr1
 
-                path: build/reports/tests
-                destination: tr2
 workflows:
   version: 2
   build_and_test:
