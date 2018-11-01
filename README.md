@@ -2,6 +2,8 @@
 
 Please note that the project still being developed!
 
+This Test Automation Framework is created using Java + Maven + TestNG + Rest-assured + Allure + Jenkins. 
+
 Jenkins: [![Build Status](http://91.235.128.79:8080/buildStatus/icon?job=ApiJiraProject&build=27)](http://91.235.128.79:8080/job/ApiJiraProject/27/)
 
 Sonar: Link-https://sonarcloud.io/dashboard?id=SlavaKlepikov_ApiJiraProject
