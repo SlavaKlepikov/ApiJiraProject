@@ -4,7 +4,7 @@ Please note that the project still being developed!
 
 Jenkins: [![Build Status](http://91.235.128.79:8080/buildStatus/icon?job=ApiJiraProject&build=27)](http://91.235.128.79:8080/job/ApiJiraProject/27/)
 
-
+Sonar:
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=bugs)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=code_smells)
 [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=duplicated_lines_density)](https://sonarcloud.io/api/project_badges/measure?project=SlavaKlepikov_ApiJiraProject&metric=duplicated_lines_density)
