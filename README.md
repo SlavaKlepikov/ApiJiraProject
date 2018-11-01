@@ -30,6 +30,7 @@ CONFIGURATION:
 TROUBLSHOOTING & FAQ:
 
 Execution:
+
 Clone the repository.
 Open command prompt and go to web-test directory.
 To run on local environment use command ...../ApiJiraProject> mvn clean test 
